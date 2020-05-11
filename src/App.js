@@ -30,7 +30,7 @@ const actionDecrement = () => dispatch => {
 }
 
 const dispatchToProps = (dispatch) => ({
-  increment : () => dispatch(actionIncrement()),
+  increment : () => dispatch(actionIncrement()), 
   decrement: () => dispatch(actionDecrement())
 })
 
