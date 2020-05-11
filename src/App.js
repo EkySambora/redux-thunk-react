@@ -1,26 +1,37 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Dad from './components/Dad';
+import { connect } from 'react-redux';
+import Contact from './components/contact';
 
-function App() {
+
+const App = (props) => {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {props.counter}
+      <Dad increment={props.increment} decrement={props.decrement} />
+      <Contact />
+    </>
+  )
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  counter : state.counter
+})
+
+
+const actionIncrement = () => dispatch => {
+  setTimeout(() => dispatch({type: "INCREMENT_COUNTER"}), 2000)
+}
+
+const actionDecrement = () => dispatch => {
+  setTimeout(()=> dispatch({type: "DECREMENT_COUNTER"}), 2000)
+}
+
+const dispatchToProps = (dispatch) => ({
+  increment : () => dispatch(actionIncrement()),
+  decrement: () => dispatch(actionDecrement())
+})
+
+export default connect(mapStateToProps, dispatchToProps) (App)
