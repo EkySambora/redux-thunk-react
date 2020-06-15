@@ -1,13 +1,14 @@
+import { actionsType } from "../actions";
 
 const rootReducer = (state = { counter: 0 }, action) => {
-    if(action.type === "INCREMENT_COUNTER") {
+    if(action.type === actionsType.INCREMENT_COUNTER) {
         return {
             ...state,
             counter: state.counter + 1
         }
     }
 
-    if(action.type === "DECREMENT_COUNTER"){
+    if(action.type === actionsType.DECREMENT_COUNTER){
         return{
             ...state,
             counter: state.counter - 1
